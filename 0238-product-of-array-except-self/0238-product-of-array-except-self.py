@@ -8,7 +8,6 @@ class Solution:
             suff[i] = nums[i]*suff[i+1]
         suff.append(1)
         
-        
         ans = []
         prodSoFar = 1
         for i in range(n):
