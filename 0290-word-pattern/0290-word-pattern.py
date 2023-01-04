@@ -9,9 +9,9 @@ class Solution:
         
         d={}
         for i in range(n):
-            if s[i] not in d:
-                d[s[i]] = pattern[i]
-            elif d[s[i]] != pattern[i]:
+            if pattern[i] not in d:
+                d[pattern[i]] = s[i]
+            elif d[pattern[i]] != s[i]:
                 return False
         return True
                     
