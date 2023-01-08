@@ -15,9 +15,8 @@ class Solution:
         for i in range(n):
             d = defaultdict(int)
             for j in range(i+1, n):
-                if i != j:
-                    slope = getSlope(points[i], points[j])
-                    d[slope] += 1
-                    ans = max(d[slope], ans)
+                slope = getSlope(points[i], points[j])
+                d[slope] += 1
+                ans = max(d[slope], ans)
         return ans+1
                     
