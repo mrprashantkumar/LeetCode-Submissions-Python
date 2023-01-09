@@ -5,9 +5,10 @@ class MinStack:
         self.mini = 100000000007
 
     def push(self, val: int) -> None:
-        if self.mini == None:
+        if self.mini == 100000000007:
             self.nums.append([val, val])
-        if self.mini <= val:
+            self.mini = val
+        elif self.mini <= val:
             self.nums.append([val, self.mini])
         else:
             self.mini = val
@@ -24,7 +25,6 @@ class MinStack:
         return self.nums[-1][0]
 
     def getMin(self) -> int:
-        
         return self.nums[-1][1]
         
 
