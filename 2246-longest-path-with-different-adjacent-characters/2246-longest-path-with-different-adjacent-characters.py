@@ -6,8 +6,6 @@ class Solution:
             graph[parent[i]].append(i)
         
         def helper(node):
-            if len(graph[node]) == 0:
-                return 1
             first, sec = 0, 0
             for child in graph[node]:
                 a1 = helper(child)
