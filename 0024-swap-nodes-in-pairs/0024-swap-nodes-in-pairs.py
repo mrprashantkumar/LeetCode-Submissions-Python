@@ -12,10 +12,8 @@ class Solution:
             head = head.next
             n += 1
         
-        i=0
-        while i<n-1:
+        for i in range(0, n-1, 2):
             arr[i], arr[i+1] = arr[i+1], arr[i]
-            i += 2
         
         ans = None
         for i in arr[::-1]:
