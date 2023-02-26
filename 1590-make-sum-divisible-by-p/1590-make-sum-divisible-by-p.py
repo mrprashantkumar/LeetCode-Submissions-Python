@@ -1,6 +1,8 @@
 class Solution:
     def minSubarray(self, nums: List[int], p: int) -> int:
         rem = sum(nums)%p
+        if rem==0:
+            return 0
         pref = 0
         d = {0:-1}
         ans = n = len(nums)
