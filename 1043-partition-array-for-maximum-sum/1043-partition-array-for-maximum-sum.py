@@ -21,7 +21,7 @@ class Solution:
 #         return helper(0)
         
         n = len(arr)
-        dp = [-1]*(n+1)
+        dp = [0]*(n+1)
         
         for i in range(n-1, -1, -1):
             ans = 0
@@ -33,4 +33,4 @@ class Solution:
             
             dp[i] = ans
         
-        return dp[0]+1
+        return dp[0]
