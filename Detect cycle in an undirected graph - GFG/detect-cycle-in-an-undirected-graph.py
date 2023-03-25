@@ -1,24 +1,28 @@
 from typing import List
+from collections import *
 class Solution:
     #Function to detect cycle in an undirected graph.
-	def isCycle(self, V: int, graph: List[List[int]]) -> bool:
-		def dfs(node, parent):
-		    visited.add(node)
-		    for child in graph[node]:
-		        if child != parent:
-		            if child in visited:
-		                return True
-		            else:
-		                if dfs(child, node):
-		                    return True
-		    return False
-		
-		visited = set()
-		for i in range(V):
-		    if i not in visited:
-		        if dfs(i, -1):
-		            return True
-		return False
+    def isCycle(self, V: int, graph: List[List[int]]) -> bool:
+        def bfs(node, parent):
+            qu = deque([(node, parent)])
+            
+            while qu:
+                curr, parent = qu.popleft()
+                visited.add(curr)
+                for child in graph[curr]:
+                    if child != parent:
+                        if child in visited:
+                            return True
+                        else:
+                            qu.append((child, curr))
+            return False
+        
+        visited = set()
+        for i in range(V):
+            if i not in visited:
+                if bfs(i, -1):
+                    return True
+        return False
 
 
 #{ 
