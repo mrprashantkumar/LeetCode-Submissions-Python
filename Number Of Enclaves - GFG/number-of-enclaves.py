@@ -18,17 +18,13 @@ class Solution:
         visited = set()
         for i in range(n):
             if grid[i][0] == 1 and (i, 0) not in visited:
-                visited.add((i, 0))
                 dfs(i, 0)
             if grid[i][m-1] == 1 and (i, m-1) not in visited:
-                visited.add((i, m-1))
                 dfs(i, m-1)
         for j in range(m):
             if grid[0][j] == 1 and (0, j) not in visited:
-                visited.add((0, j))
                 dfs(0, j)
             if grid[n-1][j] == 1 and (n-1, j) not in visited:
-                visited.add((n-1, j))
                 dfs(n-1, j)
         
         ans = 0
