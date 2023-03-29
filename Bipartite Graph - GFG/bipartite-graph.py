@@ -1,26 +1,21 @@
 from collections import *
 class Solution:
 	def isBipartite(self, V, adj):
-	    def bfs(node, color):
-	        qu = deque()
+	    def dfs(node, color):
 	        visited[node] = color
-	        qu.append((node, color))
-	        while qu:
-	            curr, color = qu.popleft()
-	            for nei in adj[curr]:
-	                if visited[nei] == -1:
-	                    visited[nei] = 1-color
-	                    qu.append((nei, 1-color))
-	                elif visited[nei] == color:
-	                    return False
-	        return True
+            for nei in adj[node]:
+                if visited[nei] == -1:
+                    if not dfs(nei, 1-color):
+                        return False
+                elif visited[nei] == color:
+                    return False
+            return True
 	    
 	    visited = [-1]*(V)
 	    for i in range(V):
 	        if visited[i] == -1:
-	            if not bfs(i, 0):
+	            if not dfs(i, 0):
 	                return False
-	   # print(visited)
 	    return True
 		#code here
 
