@@ -16,20 +16,16 @@ class Solution:
                 elif nei in seen:
                     return True
             seen.remove(node)
-            check.add(node)
+            ans.append(node)
             return False
         
         visited = set()
         seen = set()
-        check = set()
+        ans = []
         for i in range(V):
             if i not in visited:
                 dfs(i)
-        ans = []
-        for i in range(V):
-            if i in check:
-                ans.append(i)
-        return ans
+        return sorted(ans)
 
 
 
