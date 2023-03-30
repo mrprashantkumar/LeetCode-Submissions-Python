@@ -6,25 +6,26 @@ class Solution:
         for i in range(n-1):
             for x, y in zip(dict[i], dict[i+1]):
                 if x != y:
-                    graph[x].append(y)
+                    graph[ord(x)-97].append(ord(y)-97)
                     break
         
         indeg = [0]*K
         for i in range(k):
-            for node in graph[chr(97+i)]:
-                indeg[ord(node)-97] += 1
+            for node in graph[i]:
+                indeg[node] += 1
                 
         qu = deque()
         for i in range(K):
             if indeg[i] == 0:
-                qu.append(chr(97+i))
+                qu.append(i)
+        
         ans = []
         while qu:
             curr = qu.popleft()
-            ans.append(curr)
+            ans.append(chr(curr+97))
             for nei in graph[curr]:
-                indeg[ord(nei)-97] -= 1
-                if indeg[ord(nei)-97] == 0:
+                indeg[nei] -= 1
+                if indeg[nei] == 0:
                     qu.append(nei)
         
         return ans
