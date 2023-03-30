@@ -1,23 +1,28 @@
+from collections import *
 class Solution:
     
     #Function to return list containing vertices in Topological order.
     def topoSort(self, V, adj):
-        def dfs(node):
-            visited.add(node)
-            
-            for nei in adj[node]:
-                if nei not in visited:
-                    dfs(nei)
-            
-            ans.append(node)
+        indeg = [0]*V
+        for i in range(V):
+            for node in adj[i]:
+                indeg[node] += 1
+        
+        qu = deque()
+        for deg in range(V):
+            if indeg[deg] == 0:
+                qu.append(deg)
         
         ans = []
-        visited = set()
-        for i in range(V):
-            if i not in visited:
-                dfs(i)
-        return ans[::-1]
-        # Code here
+        while qu:
+            curr = qu.popleft()
+            ans.append(curr)
+            for nei in adj[curr]:
+                indeg[nei] -= 1
+                if indeg[nei] == 0:
+                    qu.append(nei)
+        return ans
+            
 
 
 
