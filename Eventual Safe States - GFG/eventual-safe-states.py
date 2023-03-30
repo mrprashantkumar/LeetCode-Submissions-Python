@@ -1,33 +1,35 @@
 #User function Template for python3
-
+from collections import *
 from typing import List
 import sys
 sys.setrecursionlimit(10**9)
 class Solution:    
-    def eventualSafeNodes(self, V : int, adj : List[List[int]]) -> List[int]:
-        # code here
-        def dfs(node):
-            visited.add(node)
-            seen.add(node)
+    def eventualSafeNodes(self, N : int, adj : List[List[int]]) -> List[int]:
+        graph = defaultdict(list)
+        for node in range(N):
             for nei in adj[node]:
-                if nei not in visited:
-                    if dfs(nei):
-                        return True
-                elif nei in seen:
-                    return True
-            seen.remove(node)
-            ans.append(node)
-            return False
+                graph[nei].append(node)
         
-        visited = set()
-        seen = set()
+        indeg = [0]*N
+        for i in range(N):
+            for node in graph[i]:
+                indeg[node] += 1
+        
+        qu = deque()
+        for i in range(N):
+            if indeg[i] == 0:
+                qu.append(i)
+        
         ans = []
-        for i in range(V):
-            if i not in visited:
-                dfs(i)
+        while qu:
+            curr = qu.popleft()
+            ans.append(curr)
+            
+            for nei in graph[curr]:
+                indeg[nei] -= 1
+                if indeg[nei] == 0:
+                    qu.append(nei)
         return sorted(ans)
-
-
 
 #{ 
  # Driver Code Starts
