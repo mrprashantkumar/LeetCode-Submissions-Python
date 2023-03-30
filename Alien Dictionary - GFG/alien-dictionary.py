@@ -4,10 +4,9 @@ class Solution:
     def findOrder(self,dict, N, K):
         graph = defaultdict(list)
         for i in range(n-1):
-            l = min(len(dict[i]), len(dict[i+1]))
-            for j in range(l):
-                if dict[i][j] != dict[i+1][j]:
-                    graph[dict[i][j]].append(dict[i+1][j])
+            for x, y in zip(dict[i], dict[i+1]):
+                if x != y:
+                    graph[x].append(y)
                     break
         
         indeg = [0]*K
