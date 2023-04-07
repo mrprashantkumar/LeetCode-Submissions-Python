@@ -1,13 +1,35 @@
 class Solution:
-    def numEnclaves(self, A: List[List[int]]) -> int:
-        def dfs(i, j):
-            A[i][j] = 0
-            for x, y in (i - 1, j), (i + 1, j), (i, j - 1), (i, j + 1):
-                if 0 <= x < m and 0 <= y < n and A[x][y]:
-                    dfs(x, y)
-        m, n = len(A), len(A[0])
-        for i in range(m):
-            for j in range(n):
-                if A[i][j] == 1 and (i == 0 or j == 0 or i == m - 1 or j == n - 1):
-                    dfs(i, j)
-        return sum(sum(row) for row in A)
+    def numEnclaves(self, grid: List[List[int]]) -> int:
+        def check(p, q):
+            return 0<=p<n and 0<=q<m and grid[p][q] == 1 and (p, q) not in visited
+        
+        n, m = len(grid), len(grid[0])
+        
+        qu = deque()
+        for i in range(n):
+            if grid[i][0] == 1:
+                qu.append((i, 0))
+            if grid[i][m-1] == 1:
+                qu.append((i, m-1))
+        
+        for j in range(m):
+            if grid[0][j] == 1:
+                qu.append((0, j))
+            if grid[n-1][j] == 1:
+                qu.append((n-1, j))
+        
+        visited = set()
+        while qu:
+            x, y = qu.popleft()
+            visited.add((x, y))
+            for dx, dy in [(-1, 0), (0, -1), (0, 1), (1, 0)]:
+                if check(x+dx, y+dy):
+                    visited.add((x+dx, y+dy))
+                    qu.append((x+dx, y+dy))
+        
+        ans = 0
+        for i in range(n):
+            for j in range(m):
+                if check(i, j):
+                    ans += 1
+        return ans
