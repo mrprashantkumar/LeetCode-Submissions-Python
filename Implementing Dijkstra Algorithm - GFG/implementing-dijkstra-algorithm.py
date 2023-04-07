@@ -7,14 +7,17 @@ class Solution:
     def dijkstra(self, V, adj, src):
         ans = [1000000007]*V
         ans[src] = 0
-        qu = [(0, src)]
+        
+        qu = set()
+        qu.add((0, src))
         while qu:
-            # print(qu)
             x, curr = qu.pop()
             for nei, wt in adj[curr]:
                 if ans[nei] > ans[curr]+wt:
+                    if (ans[nei], nei) in qu:
+                        qu.remove((ans[nei], nei))
                     ans[nei] = ans[curr]+wt
-                    heapq.heappush(qu, (ans[nei], nei))
+                    qu.add((ans[nei], nei))
         return ans
 
 #{ 
