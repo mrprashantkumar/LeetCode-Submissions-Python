@@ -14,7 +14,7 @@ class Solution:
         if l==0 or l==n*m:
             return -1
         
-        ans = 0
+        ans = -1
         visited = set()
         while qu:
             l = len(qu)
@@ -26,4 +26,4 @@ class Solution:
                         qu.append((x+dx, y+dy))
                         visited.add((x+dx, y+dy))
             ans += 1
-        return ans-1
+        return ans
