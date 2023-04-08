@@ -1,7 +1,9 @@
 class Solution:
     def maxDistance(self, grid: List[List[int]]) -> int:
-        n, m = len(grid), len(grid[0])
+        def check(p, q):
+            return 0<=p<n and 0<=q<m and grid[p][q] == 0 and (p, q) not in visited
         
+        n, m = len(grid), len(grid[0])
         qu = deque()
         for i in range(n):
             for j in range(m):
@@ -13,21 +15,15 @@ class Solution:
             return -1
         
         ans = 0
-        dirs = [(1,0), (-1,0), (0,1), (0,-1)]
-        
         visited = set()
         while qu:
-            for i in range(len(qu)):
-                node = qu.popleft()
-                x, y = node
-                visited.add(node)
-
-                for dx, dy in dirs:
-                    newX, newY = x+dx, y+dy
-                    if 0 <= newX < n and 0 <= newY < m:
-                            if (newX, newY) not in visited:
-                                if grid[newX][newY] == 0: 
-                                    qu.append((newX, newY))
-                                    grid[newX][newY] = 1
+            l = len(qu)
+            for i in range(l):
+                x, y = qu.popleft()
+                visited.add((x, y))
+                for dx, dy in [(-1, 0), (0, -1), (0, 1), (1, 0)]:
+                    if check(x+dx, y+dy):
+                        qu.append((x+dx, y+dy))
+                        visited.add((x+dx, y+dy))
             ans += 1
         return ans-1
