@@ -1,15 +1,10 @@
 class Solution:
     def findSmallestSetOfVertices(self, n: int, edges: List[List[int]]) -> List[int]:
-        graph = [[] for _ in range(n)]
+        indeg = [0]*n
         for i, j in edges:
-            graph[j].append(i)
+            indeg[j] += 1
         ans = []
         for i in range(n):
-            if not graph[i]:
+            if indeg[i] == 0:
                 ans.append(i)
         return ans
-        # ans = set(range(n))
-        # for _, e in edges:
-        #     if e in ans:
-        #         ans.remove(e)
-        # return list(ans)
