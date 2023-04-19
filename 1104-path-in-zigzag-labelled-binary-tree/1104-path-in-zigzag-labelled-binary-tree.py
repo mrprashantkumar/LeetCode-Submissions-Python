@@ -8,11 +8,11 @@ class Solution:
             temp //= 2
             level += 1
         
-        while level != 0:
+        while level:
             ans.append(label)
             maxi = pow(2, level) - 1
             mini = pow(2, level -1) 
-            label = int((maxi+mini-label)/2)
+            label = (maxi+mini-label)//2
             level -= 1
         
         return ans[::-1]
