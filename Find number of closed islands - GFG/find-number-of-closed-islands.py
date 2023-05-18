@@ -14,18 +14,18 @@ class Solution:
 		visited = set()
 		for i in range(n):
 		    if matrix[i][0] == 1:
-		        visited.add((i, 0))
+		      #  visited.add((i, 0))
 		        dfs(i, 0)
 		    if matrix[i][m-1] == 1:
-		        visited.add((i, m-1))
+		      #  visited.add((i, m-1))
 		        dfs(i, m-1)
 		
 		for j in range(m):
 		    if matrix[0][j] == 1:
-		        visited.add((0, j))
+		      #  visited.add((0, j))
 		        dfs(0, j)
 		    if matrix[n-1][j] == 1:
-		        visited.add((n-1, j))
+		      #  visited.add((n-1, j))
 		        dfs(n-1, j)
 		
 		ans = 0
@@ -35,9 +35,6 @@ class Solution:
 		            dfs(i, j)
 		            ans += 1
 		return ans
-		    
-		        
-
 
 #{ 
  # Driver Code Starts
