@@ -9,13 +9,10 @@ class Solution:
             for j in range(m):
                 if rooms[i][j] == 0:
                     qu.append((i, j))
-        dist = 1
+
         while qu:
-            l = len(qu)
-            for _ in range(l):
-                x, y = qu.popleft()
-                for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
-                    if isvalid(x+dx, y+dy):
-                        rooms[x+dx][y+dy] = dist
-                        qu.append((x+dx, y+dy))
-            dist += 1
+            x, y = qu.popleft()
+            for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+                if isvalid(x+dx, y+dy):
+                    rooms[x+dx][y+dy] = rooms[x][y]+1
+                    qu.append((x+dx, y+dy))
