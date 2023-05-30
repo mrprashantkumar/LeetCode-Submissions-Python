@@ -1,29 +1,42 @@
 #User function Template for python3
-from collections import *
+class DisjointSet:
+    def __init__(self, n):
+        self.rank = [0]*(n+1)
+        self.size = [1]*(n+1)
+        self.parent = [i for i in range(n+1)]
+    
+    def find(self, node):
+        if node == self.parent[node]:
+            return node
+        self.parent[node] = self.find(self.parent[node])
+        return self.parent[node]
+    
+    def union(self, u, v):
+        paru = self.find(u)
+        parv = self.find(v)
+        
+        if paru == parv:
+            return
+        
+        if self.rank[paru] < self.rank[parv]:
+            self.parent[paru] = parv
+        elif self.rank[paru] < self.rank[parv]:
+            self.parent[parv] = paru
+        else:
+            self.parent[parv] = paru
+            self.rank[paru] += 1
+            
 class Solution:
-    def numProvinces(self, adj, n):
-        graph = defaultdict(list)
-        for i in range(n):
-            for j in range(i+1, n):
+    def numProvinces(self, adj, V):
+        obj = DisjointSet(V)
+        for i in range(V):
+            for j in range(V):
                 if adj[i][j] == 1:
-                    graph[i].append(j)
-                    graph[j].append(i)
-        
-        visited = set()
-        
-        def dfs(node):
-            visited.add(node)
-            for nei in graph[node]:
-                if nei not in visited:
-                    visited.add(nei)
-                    dfs(nei)
-        
+                    obj.union(i, j)
         ans = 0
-        for i in range(n):
-            if i not in visited:
-                visited.add(i)
+        for i in range(V):
+            if obj.parent[i] == i:
                 ans += 1
-                dfs(i)
         return ans
 
 
