@@ -48,7 +48,7 @@ class Solution:
                         if newcord in visited:
                             if obj.find(num) != obj.find(newcord):
                                 curr -= 1
-                            obj.union(num, newcord)
+                                obj.union(num, newcord)
             # print(x, y, visited)
             ans.append(curr)
         return ans
