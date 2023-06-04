@@ -39,8 +39,7 @@ class Solution:
                     for di, dj in [(-1, 0), (1, 0), (0, 1), (0, -1)]:
                         if isvalid(i+di, j+dj):
                             newCell = (i+di)*m + j+dj
-                            if obj.find(cellVal) != obj.find(newCell):
-                                obj.unionSize(cellVal, newCell)
+                            obj.unionSize(cellVal, newCell)
         
         ans = max(obj.size)
         for i in range(n):
