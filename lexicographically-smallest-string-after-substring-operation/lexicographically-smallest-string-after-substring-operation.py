@@ -2,10 +2,6 @@ class Solution:
     def smallestString(self, s: str) -> str:
         arr = [i for i in s]
         n = len(arr)
-        if all(i == 'a' for i in arr):
-            arr[-1] = 'z'
-            return "".join(arr)
-
         i = 0
         while i<n and arr[i] != 'a':
             i += 1
@@ -13,7 +9,9 @@ class Solution:
         if i == 0:
             while i<n and arr[i] == 'a':
                 i += 1
-            
+            if i == n:
+                arr[-1] = 'z'
+                return "".join(arr)
             j = i
             while j<n and arr[j] != 'a':
                 j += 1
