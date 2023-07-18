@@ -12,18 +12,19 @@ class Solution:
                     return False
             return True
 
-        def helper(board):
-            for i in range(9):
-                for j in range(9):
+        def helper(board, sr, sc):
+            for i in range(sr, 9):
+                for j in range(sc, 9):
                     if board[i][j] == '.':
                         for num in range(1, 10):
                             if isvalid(str(num), i, j):
                                 board[i][j] = str(num)
-                                if helper(board):
+                                if helper(board, i, j):
                                     return True
                                 else:
                                     board[i][j] = '.'
                         return False
+                sc = 0
             return True
         
-        helper(board)
+        helper(board, 0, 0)
