@@ -7,9 +7,6 @@ class Solution:
         ans = []
         for size in graph:
             l = len(graph[size])
-            if l == size:
-                ans.append(graph[size])
-            else:
-                for a in range(0, l, size):
-                    ans.append(graph[size][a:a+size])
+            for a in range(0, l, size):
+                ans.append(graph[size][a:a+size])
         return ans
