@@ -12,8 +12,5 @@ class Solution:
                 ans += ['Push', 'Pop']
             
             val += 1
-
-            if val > n:
-                break
         
         return ans
