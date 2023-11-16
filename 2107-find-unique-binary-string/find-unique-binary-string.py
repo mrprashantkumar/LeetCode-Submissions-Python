@@ -9,7 +9,7 @@ class Solution:
             return num
         
         n = len(nums)
-        vals = [getint(i) for i in nums]
+        vals = set([getint(i) for i in nums])
 
         for i in range(n+3):
             if i not in vals:
