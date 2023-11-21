@@ -13,8 +13,7 @@ class Solution:
         ans = 0
         for i in nums:
             val = i - rev(i)
-            if val in d:
-                ans += d[val]
-                ans %= 1000000007
+            ans += d[val]
             d[val] += 1
-        return ans
+            
+        return ans%1000000007
