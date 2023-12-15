@@ -1,9 +1,9 @@
 class Solution:
     def destCity(self, paths: List[List[str]]) -> str:
-        outdeg, indeg = defaultdict(int), defaultdict(int)
+        outdeg, indeg = set(), set()
         for x, y in paths:
-            outdeg[x] += 1
-            indeg[y] += 1
+            outdeg.add(x)
+            indeg.add(y)
         
         for city in indeg:
             if city not in outdeg:
