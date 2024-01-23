@@ -1,6 +1,6 @@
 class Solution:
     def maxLength(self, arr: List[str]) -> int:
-        @cache
+        # @cache
         def helper(i, charsofar):
             allUnique = False
             l = len(charsofar)
