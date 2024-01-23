@@ -1,6 +1,5 @@
 class Solution:
     def maxLength(self, arr: List[str]) -> int:
-        # @cache
         def helper(i, charsofar):
             allUnique = False
             l = len(charsofar)
@@ -11,9 +10,8 @@ class Solution:
             if i == n or not allUnique:
                 return
             
-            for j in range(i, n):
-                helper(j+1, charsofar+arr[j])
-            
+            helper(i+1, charsofar)
+            helper(i+1, charsofar+arr[i])
             return 
         
         n = len(arr)
