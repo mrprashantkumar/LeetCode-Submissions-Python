@@ -10,8 +10,8 @@ class Solution:
             if not node:
                 return 0
             
+            pathsofar[node.val] += 1
             if not node.left and not node.right:
-                pathsofar[node.val] += 1
                 vals = pathsofar.values()
                 oddcount = sum([i&1 for i in vals])
                 pathsofar[node.val] -= 1
@@ -20,7 +20,6 @@ class Solution:
                 else:
                     return 0
             
-            pathsofar[node.val] += 1
             ans = helper(node.left, pathsofar) + helper(node.right, pathsofar)
             pathsofar[node.val] -= 1
             return ans
