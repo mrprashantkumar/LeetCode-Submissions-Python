@@ -11,8 +11,7 @@ class Solution:
                 return 
             
             if not node.left and not node.right:
-                path = chr(node.val + 97) + path
-                self.ans = min(self.ans, path)
+                self.ans = min(self.ans, chr(node.val + 97) + path)
                 return 
             
             helper(node.left, chr(node.val + 97) + path)
