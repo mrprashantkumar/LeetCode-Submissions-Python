@@ -3,8 +3,9 @@ class Solution:
         d = Counter(nums)
 
         ans = d[1] if d[1]&1 else d[1]-1
+        seen = set()
         for i in d:
-            if i > 1:
+            if i > 1 and i not in seen:
                 curr = 0
                 power = 1
                 while True:
@@ -16,6 +17,7 @@ class Solution:
                         break
                     else:
                         break
+                seen.add(i)
                 curr = curr if curr&1 else curr-1
                 ans = max(curr, ans)
         return ans
