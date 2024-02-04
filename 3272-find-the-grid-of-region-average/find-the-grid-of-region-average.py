@@ -10,7 +10,7 @@ class Solution:
             return True
 
         n, m = len(image), len(image[0])
-        ans = [[-1]*m for _ in range(n)]
+        ans = [[0]*m for _ in range(n)]
         count = [[0]*m for _ in range(n)]
 
         for i in range(n-2):
@@ -25,14 +25,11 @@ class Solution:
                     for x in range(i, i+3):
                         for y in range(j, j+3):
                             count[x][y] += 1
-                            if ans[x][y] == -1:
-                                ans[x][y] = val
-                            else:
-                                ans[x][y] += val
+                            ans[x][y] += val
         
         for i in range(n):
             for j in range(m):
-                if ans[i][j] == -1:
+                if count[i][j] == 0:
                     ans[i][j] = image[i][j]
                 else:
                     ans[i][j] //= count[i][j]
