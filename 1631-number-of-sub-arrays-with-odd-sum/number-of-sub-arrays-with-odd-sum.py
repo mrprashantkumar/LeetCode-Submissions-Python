@@ -8,7 +8,7 @@ class Solution:
         for i in range(n):
             pref += arr[i]
             pref %= 2
+            d[pref] += 1
             ans += d[1 - pref]
             ans %= 1000000007
-            d[pref] += 1
         return ans
