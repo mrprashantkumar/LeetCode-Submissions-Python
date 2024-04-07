@@ -14,6 +14,5 @@ class Solution:
             else:
                 return helper(i+1, open) or helper(i+1, open+1) or helper(i+1, open-1)
         
-
         n = len(s)
         return helper(0, 0)
