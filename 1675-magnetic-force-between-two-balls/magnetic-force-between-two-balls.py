@@ -7,6 +7,9 @@ class Solution:
                 if position[i] - last >= k:
                     count += 1
                     last = position[i]
+                
+                if count == m:
+                    return True
             
             return count >= m
         
