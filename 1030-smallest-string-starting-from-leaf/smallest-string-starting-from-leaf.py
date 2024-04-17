@@ -8,16 +8,11 @@ class Solution:
     def smallestFromLeaf(self, root: Optional[TreeNode]) -> str:
         def helper(node, path):
             if not node:
-                return 
+                return 'z'*8501
             
             if not node.left and not node.right:
-                self.ans = min(self.ans, chr(node.val + 97) + path)
-                return 
+                return chr(node.val + 97) + path
             
-            helper(node.left, chr(node.val + 97) + path)
-            helper(node.right, chr(node.val + 97) + path)
-            return 
+            return min(helper(node.left, chr(node.val + 97) + path), helper(node.right, chr(node.val + 97) + path))
         
-        self.ans = 'z'*8501
-        helper(root, '')
-        return self.ans
+        return helper(root, '')
