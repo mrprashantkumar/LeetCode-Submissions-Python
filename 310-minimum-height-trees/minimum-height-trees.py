@@ -26,4 +26,5 @@ class Solution:
                     outdeg[nei] -= 1
                     if outdeg[nei] == 1:
                         ans.append(nei)
+        
         return ans
