@@ -6,7 +6,6 @@ class Solution:
         for i, x in enumerate(nums):
             pref += x
             pref %= k
-            print(i, pref)
             d[pref] = min(d.get(pref, inf), i)
             if pref in d and (i - d[pref]) >= 2:
                 return True
