@@ -15,7 +15,7 @@ class Solution:
         
         position.sort()
         n = len(position)
-        low, high = 1, 10**9
+        low, high = 1, position[n-1]
         ans = 0
         while low <= high:
             mid = (low + high) // 2
