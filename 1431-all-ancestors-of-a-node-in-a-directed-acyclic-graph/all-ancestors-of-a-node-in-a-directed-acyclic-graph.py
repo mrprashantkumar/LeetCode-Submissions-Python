@@ -4,8 +4,7 @@ class Solution:
         def dfs(node):
             res = []
             for nei in graph[node]:
-                if nei not in visited:
-                    res += dfs(nei)
+                res += dfs(nei)
             
             self.ans[node] = sorted(set(res))
             return self.ans[node] + [node]
@@ -17,7 +16,6 @@ class Solution:
             indeg[x] += 1
         
         self.ans = [[] for _ in range(n)]
-        visited = set()
         for node in range(n):
             if indeg[node] == 0:
                 dfs(node)
