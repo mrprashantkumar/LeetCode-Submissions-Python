@@ -6,10 +6,9 @@
 #         self.right = right
 class Solution:
     def createBinaryTree(self, descriptions: List[List[int]]) -> Optional[TreeNode]:
-        parent = defaultdict(None)
+        parent = {}
         mapping = {}
         allnodes = set()
-        root = None
         for par, child, isLeft in descriptions:
             if par not in mapping:
                 mapping[par] = TreeNode(par)
