@@ -10,22 +10,22 @@ class Solution:
             if not node:
                 return
             
-            res = node
-            if node.val in to_delete:
-                self.ans.discard(node)
-                res = None
-                if node.left:
-                    self.ans.add(node.left)
-                if node.right:
-                    self.ans.add(node.right)
-                
             node.left = dfs(node.left)
             node.right = dfs(node.right)
+
+            res = node
+            if node.val in to_delete:
+                res = None
+                if node.left:
+                    self.ans.append(node.left)
+                if node.right:
+                    self.ans.append(node.right)
+                
             return res
 
-
         to_delete = set(to_delete)
-        self.ans = set()
-        self.ans.add(root)
+        self.ans = []
+        if root.val not in to_delete:
+            self.ans.append(root)
         dfs(root)
-        return list(self.ans)
+        return self.ans
