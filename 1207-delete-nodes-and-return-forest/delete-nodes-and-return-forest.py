@@ -13,19 +13,18 @@ class Solution:
             node.left = dfs(node.left)
             node.right = dfs(node.right)
 
-            res = node
             if node.val in to_delete:
-                res = None
                 if node.left:
                     self.ans.append(node.left)
                 if node.right:
                     self.ans.append(node.right)
+                return None
                 
-            return res
+            return node
 
         to_delete = set(to_delete)
         self.ans = []
-        if root.val not in to_delete:
+        root = dfs(root)
+        if root:
             self.ans.append(root)
-        dfs(root)
         return self.ans
